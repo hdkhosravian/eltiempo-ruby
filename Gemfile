@@ -6,7 +6,8 @@ gem 'rspec'
 gem 'pry'
 
 # requirments
+gem 'dotenv'
 gem 'dry-cli'
 gem 'faraday'
+gem 'webmock'
 gem 'nokogiri'
-gem 'dotenv'
