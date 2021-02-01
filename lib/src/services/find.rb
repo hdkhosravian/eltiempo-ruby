@@ -34,6 +34,8 @@ module Lib
                 "report location data name[contains('#{name}')]"
               )
 
+              # please consider we can use I18N for our messages and same with our ENV["API_LANG"]
+              # but for this project I used english and make it hardcode.
               error = "we could not find the #{name}"
               error += ", did you mean:" unless items.empty?
               items.each do |item|
