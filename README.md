@@ -6,5 +6,6 @@ To use this library, you have to do this:
 - run `./bin/eltiempo`
 
 TODOs:
-- [] add case insensitive
-- [] documentations
+- [ ] add case insensitive
+- [ ] documentations
+- [ ] I18N???
