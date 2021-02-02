@@ -17,8 +17,8 @@ module Lib
           end
   
           def process
-            list = get_temps_list
-            location_id = get_temp_find(list) if errors.empty?
+            locations = get_locations_list
+            location_id = get_temp_find(locations) if errors.empty?
             temp = get_temp_show(location_id) if errors.empty?
             get_temp_details(temp) if errors.empty?
 
@@ -31,7 +31,7 @@ module Lib
             { object: forcast, errors: errors }
           end
 
-          def get_temps_list
+          def get_locations_list
             result = Lib::Src::Services::List.new.process
             @errors.concat(result[:errors])
             result[:object]

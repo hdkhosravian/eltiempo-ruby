@@ -2,25 +2,25 @@ module Lib
   module Src
     module Services
       class List
-        attr_reader :errors, :temps
+        attr_reader :errors, :locations
 
         def initialize
-          @temps  = ""
+          @locations  = ""
           @errors  = []
         end
 
         def process
-          get_temps_list
+          get_locations_list
           render_result
         end
 
         private
 
         def render_result
-          { object: temps, errors: errors }
+          { object: locations, errors: errors }
         end
 
-        def get_temps_list
+        def get_locations_list
           resp = Faraday.get(ENV["TIEMPO_URL"]) do |req|
             # we can read these attributes from user inputs too
             req.params['api_lang'] = ENV["API_LANG"]
@@ -36,7 +36,7 @@ module Lib
                 @errors << error.content
               end
             else
-              @temps = body
+              @locations = body
             end
           end
         end
