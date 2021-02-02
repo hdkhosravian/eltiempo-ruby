@@ -3,6 +3,9 @@ require './lib/src/services/result'
 describe Lib::Src::Services::Details do
   context "success requests" do
     it "for max avg" do
+      # we have to fake date for our test because we are using mock data
+      allow(Time).to receive(:now).and_return(Time.parse('2021-02-02'))
+
       mock_requests
 
       list = Lib::Src::Services::List.new.process
@@ -15,6 +18,9 @@ describe Lib::Src::Services::Details do
     end
 
     it "for min avg" do
+      # we have to fake date for our test because we are using mock data
+      allow(Time).to receive(:now).and_return(Time.parse('2021-02-02'))
+
       mock_requests
 
       list = Lib::Src::Services::List.new.process
@@ -27,6 +33,9 @@ describe Lib::Src::Services::Details do
     end
 
     it "for today temp" do
+      # we have to fake date for our test because we are using mock data
+      allow(Time).to receive(:now).and_return(Time.parse('2021-02-02'))
+
       mock_requests
 
       list = Lib::Src::Services::List.new.process
@@ -34,7 +43,7 @@ describe Lib::Src::Services::Details do
       temp = Lib::Src::Services::Show.new(local_id[:object]).process
       result = Lib::Src::Services::Details.new(temp[:object], 'today').process
 
-      expect(result[:object]).to eq("min: 10\nmax: 19")
+      expect(result[:object]).to eq("min: 9\nmax: 18")
       expect(result[:errors]).to eq([]) 
     end
   end

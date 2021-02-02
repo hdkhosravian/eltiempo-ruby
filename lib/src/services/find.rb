@@ -23,16 +23,12 @@ module Lib
           end
 
           def find_temp_id
-            item = list.search(
-              "report location data name[text() = '#{name}']"
-            )
-            
-            unless item.empty?
+            item = find_city(name)
+
+            unless item.empty? || item.count > 1
               @temp_id = item.attribute('id').value
             else
-              items = list.search(
-                "report location data name[contains('#{name}')]"
-              )
+              items = find_city(name)
 
               # please consider we can use I18N for our messages and same with our ENV["API_LANG"]
               # but for this project I used english and make it hardcode.
@@ -44,6 +40,17 @@ module Lib
 
               @errors << error
             end
+          end
+
+          def find_city(city)
+            return list.xpath("//report//location//data//name[
+              contains(
+                translate(
+                  text(),
+                  'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                  'abcdefghijklmnopqrstuvwxyz'),
+                '#{city.downcase}')
+            ]")
           end
         end
       end

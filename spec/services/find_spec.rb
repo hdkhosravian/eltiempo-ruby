@@ -2,6 +2,9 @@ require './lib/src/services/result'
 
 describe Lib::Src::Services::Find do
   it "success requests" do
+    # we have to fake date for our test because we are using mock data
+    allow(Time).to receive(:now).and_return(Time.parse('2021-02-02'))
+
     mock_requests
     list = Lib::Src::Services::List.new.process
     result = Lib::Src::Services::Find.new(list[:object], 'Gavamar').process
@@ -11,6 +14,9 @@ describe Lib::Src::Services::Find do
   end
 
   it "find similar cities" do
+    # we have to fake date for our test because we are using mock data
+    allow(Time).to receive(:now).and_return(Time.parse('2021-02-02'))
+
     mock_requests
     list = Lib::Src::Services::List.new.process
     result = Lib::Src::Services::Find.new(list[:object], 'Gav').process
