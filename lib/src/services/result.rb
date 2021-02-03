@@ -19,8 +19,8 @@ module Lib
           def process
             locations = get_locations_list
             location_id = get_temp_find(locations) if errors.empty?
-            temp = get_temp_show(location_id) if errors.empty?
-            get_temp_details(temp) if errors.empty?
+            city_temp = get_temp_show(location_id) if errors.empty?
+            get_temp_details(city_temp) if errors.empty?
 
             render_result
           end
